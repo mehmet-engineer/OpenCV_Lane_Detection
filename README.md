@@ -5,5 +5,5 @@ Python OpenCV araçları ve HoughLine teorisi kullanarak geliştirmiş olduğum 
 
 Video -> https://drive.google.com/drive/u/0/folders/1t4Nr6niWguqxeanHeiZitAINIwjlwLyS
 
-![resim](https://github.com/mehmet-engineer/OpenCV_Serit_Tespit_Yazilimi/blob/main/resim.png)
 ![resim](https://github.com/mehmet-engineer/OpenCV_Serit_Tespit_Yazilimi/blob/main/resim2.png)
+![resim](https://github.com/mehmet-engineer/OpenCV_Serit_Tespit_Yazilimi/blob/main/resim.png)
