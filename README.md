@@ -4,3 +4,4 @@
 Python OpenCV araçları ve HoughLine teorisi kullanarak geliştirmiş olduğum yazılım, yoldaki şeritleri ve şeritlerin araçlara göre konumlarını algılayabilmektedir. Böylece araçların şerit içerisinde olup olmadığının denetlenmesi gerçekleştirilmektedir.
 
 ![resim](https://github.com/mehmet-engineer/OpenCV_Serit_Tespit_Yazilimi/blob/main/resim.png)
+![resim](https://github.com/mehmet-engineer/OpenCV_Serit_Tespit_Yazilimi/blob/main/resim.png)
