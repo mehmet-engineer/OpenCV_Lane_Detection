@@ -1,22 +1,18 @@
-# OpenCV Şerit Tespit Yazılımı
+# OpenCV Lane Detection
 
-Şerit tespit yazılımı, özel görevler için tasarlanmış Trafik Koordinatörü sisteminde kullandığım özel yazılım paketimin bir parçasıdır.
-Python OpenCV araçları ve HoughLine teorisi kullanarak geliştirmiş olduğum yazılım, yoldaki şeritleri ve şeritlerin araçlara göre konumlarını algılayabilmektedir. Böylece araçların şerit içerisinde olup olmadığının denetlenmesi gerçekleştirilmektedir.
+Lane detection software is part of my custom software package that I use in the Traffic Coordinator system designed for specific tasks. The software I developed using Python OpenCV tools and HoughLine theory can detect the lanes on the road and the position of the lanes relative to the vehicles. Thus, it is checked whether the vehicles are in the lane or not.
 
 Video -> https://drive.google.com/drive/u/0/folders/1t4Nr6niWguqxeanHeiZitAINIwjlwLyS
 
 ![resim](https://github.com/mehmet-engineer/OpenCV_Serit_Tespit_Yazilimi/blob/main/resim2.png)
 
-Emniyet şeridinin tespit edilmesi için kameradan alınan veriler öncelikle blur ve maskeleme gibi morfolojik işlemlerden geçirilmektedir. Daha sonra pixellerin yatay ve düşeyde
-farklılaşma düzeyine bağlı olarak kenar algılama algoritması çalıştırılmaktadır. Algılanan kenarların emniyet şeridi olup olmadığına Hough Line fonksiyonu ile karar verilmektedir.
-Hough Line teorisi temeli geometriye dayanan özelleştirilmiş çizgi tespit yöntemidir. Görüntülerin 2 boyutlu bir matris olduğu düşünüldüğünde algılanan kenar noktalarının orjine
-(0,0) olan uzaklığı (ρ) birinci parametre iken yatay eksende yaptığı açı (θ) ikinci parametreyi oluşturmaktadır. Parametreler arasındaki geometrik bağıntı aşağıdaki formülde görülmektedir;
+In order to detect the safety strip, the data taken from the camera is first processed through morphological processes such as blurring and masking. Then, the edge detection algorithm is run depending on the horizontal and vertical differentiation level of the pixels. Whether the detected edges are safety strips or not is determined by the Hough Line function. Hough Line theory is a customized line detection method based on geometry. Considering that the images are a 2-dimensional matrix, the distance (ρ) of the perceived edge points to the origin (0,0) is the first parameter, while the angle (θ) on the horizontal axis constitutes the second parameter. The geometric relationship between the parameters is shown in the formula below;
 
 ρ = xcosθ + ysinθ
 
 
-Her bir nokta için alınan veriler Hough Transform düzlemi olarak adlandırılan koordinat sistemine aktarılmaktadır. Bu düzlemdeki uzaklık-açı değerleri tüm noktalar için kaydedilmekte ve değerlerin koordinatları bir sayaç (accumulator) yardımıyla yoğun bölgeler olarak belirlenmektedir. Sayacın belli bir eşik değeri üstündeki yoğun noktaların uzaklık açı değerleri, bu parametrelerde görüntü üzerinde bir çizgi olabileceği ihtimalini göstermektedir.
+The data received for each point is transferred to the coordinate system called the Hough Transform plane. The distance-angle values in this plane are recorded for all points and the coordinates of the values are determined as dense regions with the help of an accumulator. The distance angle values of the intense points above a certain threshold value of the counter show the possibility that there may be a line on the image in these parameters.
 
 ![resim](https://github.com/mehmet-engineer/OpenCV_Serit_Tespit_Yazilimi/blob/main/hough_line.jpg)
 
-Yukarıda noktaların temsili uzaklık-açı grafiği ve Hough Line dönüşüm düzlemi verilmiştir. Tespit edilen çizgiler, doğrusal f(x)=ax+b fonksiyonu çıkarılarak tanımlanmaktadır. Fonksiyon üzerindeki pixellerin tüm (x,y) koordinatları bir döngü içerisine alınıp tek tek renk değişimiyle işaretlenmektedir. Böylece noktalardan oluşan renkli çizgilerin görüntü üzerinde tespiti gerçekleştirilmektedir. Son olarak algoritma üzerinde uygun eşik değerlerin seçilmesi gibi optimizasyon çalışmaları yapılarak verim ve hassasiyet artırılmıştır. Hazırlanan şerit tespit algoritması 30-60 FPS hızlarında çalışmakta ve ağır bir işlem yükü gerektirmediğinden verimi açısından ön plana çıkmaktadır.
+The representative distance-angle plot of the points and the Hough Line transform plane are given above. The detected lines are defined by subtracting the linear function f(x)=ax+b. All (x, y) coordinates of the pixels on the function are enclosed in a loop and marked with a color change one by one. Thus, the detection of colored lines consisting of dots on the image is carried out. Finally, efficiency and sensitivity have been increased by performing optimization studies such as selecting appropriate threshold values on the algorithm. The strip detection algorithm prepared works at 30-60 FPS speeds and stands out in terms of efficiency as it does not require a heavy processing load.
